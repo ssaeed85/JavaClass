@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.params=st
+comment0.target=int[]\ countLetters(java.lang.String)
+comment1.params=array
+comment1.target=int\ maxIndex(int[])
+comment2.params=maxIndex
+comment2.target=int\ decryptionKey(int)
+comment3.params=input
+comment3.target=java.lang.String\ breakCaesarCipher(java.lang.String)
+comment4.params=
+comment4.target=void\ simpleTests()
+numComments=5
