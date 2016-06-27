@@ -57,10 +57,8 @@ public class TestCaesarCipher {
         System.out.println(input);
         CaesarCipher c1 = new CaesarCipher(18);
         String encrypted = c1.encrypt(input);
-        System.out.println(encrypted);
-        
-        //System.out.println(c1.decrypt(encrypted));
-        
+        System.out.println(encrypted);        
+        //System.out.println(c1.decrypt(encrypted));        
         System.out.println(breakCaesarCipher(encrypted));
     }
 }

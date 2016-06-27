@@ -5,4 +5,6 @@ comment1.params=msg
 comment1.target=java.lang.String\ encrypt(java.lang.String)
 comment2.params=encrypted
 comment2.target=java.lang.String\ decrypt(java.lang.String)
-numComments=3
+comment3.params=msg\ key
+comment3.target=void\ testEncrypt(java.lang.String,\ int)
+numComments=4

@@ -20,7 +20,7 @@ public class CaesarBreaker {
                 letterFreq[idx]++;
             }
         }
-        return letterFreq;
+        return letterFreq;  
     }
     
     public String decrypt(String encrypted){

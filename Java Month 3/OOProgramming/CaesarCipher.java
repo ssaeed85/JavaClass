@@ -42,4 +42,9 @@ public class CaesarCipher {
         CaesarCipher cc = new CaesarCipher(dKey);
         return cc.encrypt(encrypted);
     }
+    
+    public void testEncrypt(String msg,int key){
+        CaesarCipher cc = new CaesarCipher(key);
+        System.out.println(cc.encrypt(msg));
+    }
 }
