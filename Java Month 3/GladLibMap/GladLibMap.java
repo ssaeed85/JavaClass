@@ -1,44 +1,34 @@
 import edu.duke.*;
 import java.util.*;
-
-public class GladLib {
-    private ArrayList<String> adjectiveList;
-    private ArrayList<String> nounList;
-    private ArrayList<String> colorList;
-    private ArrayList<String> countryList;
-    private ArrayList<String> nameList;
-    private ArrayList<String> animalList;
-    private ArrayList<String> timeList;
-    private ArrayList<String> verbList;
-    private ArrayList<String> fruitList;
+import java.io.*;
+public class GladLibMap {
     private ArrayList<String> usedWordList = new ArrayList<String>();
-    
+    private HashMap<String, ArrayList<String>> myMap = 
+            new HashMap<String, ArrayList<String>>(); //This will replace the above array lists
+    private ArrayList<String> usedCategoriesList = new ArrayList<String>();
     private Random myRandom;
     private int wordsReplacedCount = 0;
     
     private static String dataSourceURL = "http://dukelearntoprogram.com/course3/data";
     private static String dataSourceDirectory = "datalong";
     
-    public GladLib(){
+    public GladLibMap(){
+        myMap.clear();
         initializeFromSource(dataSourceDirectory);
         myRandom = new Random();
     }
     
-    public GladLib(String source){
+    public GladLibMap(String source){
         initializeFromSource(source);
         myRandom = new Random();
     }
     
     private void initializeFromSource(String source) {
-        adjectiveList= readIt(source+"/adjective.txt"); 
-        nounList = readIt(source+"/noun.txt");
-        colorList = readIt(source+"/color.txt");
-        countryList = readIt(source+"/country.txt");
-        nameList = readIt(source+"/name.txt");      
-        animalList = readIt(source+"/animal.txt");
-        timeList = readIt(source+"/timeframe.txt");     
-        verbList = readIt(source+"/verb.txt");
-        fruitList = readIt(source+"/fruit.txt");
+       String[] labels = {"verb","noun","animal","country","color","adjective","name","timeframe","fruit"};
+       for(String word: labels){
+           ArrayList<String> list = readIt(source + "/" + word + ".txt");
+           myMap.put(word,list);
+       }
     }
     
     private String randomFrom(ArrayList<String> source){
@@ -47,37 +37,10 @@ public class GladLib {
     }
     
     private String getSubstitute(String label) {
-        if (label.equals("country")) {
-            return randomFrom(countryList);
-        }
-        if (label.equals("color")){
-            return randomFrom(colorList);
-        }
-        if (label.equals("noun")){
-            return randomFrom(nounList);
-        }
-        if (label.equals("name")){
-            return randomFrom(nameList);
-        }
-        if (label.equals("adjective")){
-            return randomFrom(adjectiveList);
-        }
-        if (label.equals("animal")){
-            return randomFrom(animalList);
-        }
-        if (label.equals("timeframe")){
-            return randomFrom(timeList);
-        }
         if (label.equals("number")){
             return ""+myRandom.nextInt(50)+5;
         }
-        if (label.equals("verb")){
-            return randomFrom(verbList);
-        }
-        if (label.equals("fruit")){
-            return randomFrom(fruitList);
-        }
-        return "**UNKNOWN**";
+        return randomFrom(myMap.get(label));
     }
     
     private String processWord(String w){
@@ -89,8 +52,12 @@ public class GladLib {
         }
         String prefix = w.substring(0,first);
         String suffix = w.substring(last+1);
+        //Use loop to loop through word list until unused word is found and add to growin list of words used
         while(usedWordList.contains(sub) || sub.equals(""))
             sub = getSubstitute(w.substring(first+1,last));
+        //Add <category> to used category list
+        if(!usedCategoriesList.contains(w.substring(first+1,last)))
+            usedCategoriesList.add(w.substring(first+1,last));        
         usedWordList.add(sub);
         wordsReplacedCount++;
         return prefix+sub+suffix;
@@ -122,7 +89,7 @@ public class GladLib {
                 story = story + processWord(word) + " ";
             }
         }
-        return story+"\n\t\t"+"Number of words replaced: " + wordsReplacedCount;
+        return story+"\n\nNumber of words replaced: " + wordsReplacedCount;
     }
     
     private ArrayList<String> readIt(String source){
@@ -141,12 +108,29 @@ public class GladLib {
         }
         return list;
     }
+    private int totalWordsInMap(){
+        int count=0;
+        for(String key : myMap.keySet()){
+            count = myMap.get(key).size() + count;
+        }
+        return count;
+    }
+    private int totalWordsConsidered(){
+        int count=0;
+        for(String key : myMap.keySet()){
+            if(usedCategoriesList.contains(key))
+                count = myMap.get(key).size()+count;
+        }
+        return count;
+    }
     
     public void makeStory(){
         System.out.println("\n");
         usedWordList.clear();
         String story = fromTemplate("data/madtemplate2.txt");
         printOut(story, 60);
+        System.out.println("\nTotal word count available for use: " + totalWordsInMap());
+        System.out.println("\nTotal words considered: " + totalWordsConsidered());
     }
 }
    

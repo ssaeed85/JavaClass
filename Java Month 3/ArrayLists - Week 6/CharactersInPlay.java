@@ -53,6 +53,6 @@ public class CharactersInPlay {
             System.out.println(charNames.get(i) + "\t" + nameFreq.get(i));
         }
         System.out.println("\n\nAfter filtering:\n");
-        charactersWithNumParts(2,10);
+        charactersWithNumParts(70,10000);
     }
 }

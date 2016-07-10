@@ -35,13 +35,16 @@ public class CodonCount {
     }
     
     public void printCodonCount(int min,int max){
+        int uniqueCount=0;
         System.out.println("Counts of codons between " +min+ " & " +max+ " are:");
         for(String key : myMap.keySet()){
             Integer value = myMap.get(key);
-            if((value >= min) && (value <= max))
+            if((value >= min) && (value <= max)){
                 System.out.println(key+"\t" + value);
-            //}
+                uniqueCount += 1;
+            }
         }
+        System.out.println("Unique word count: " + uniqueCount);
     }
     
     public void getMostCommonCodon(){
@@ -62,15 +65,15 @@ public class CodonCount {
         for(String word : fr.words()){
             //System.out.println(word +"\tLength: " + word.length());
             buildCodonMap(0,word);
-            printCodonCount(1,5);
+            printCodonCount(1,99);
             getMostCommonCodon();
             
             buildCodonMap(1,word);
-            printCodonCount(1,5);
+            printCodonCount(1,99);
             getMostCommonCodon();
             
             buildCodonMap(2,word);
-            printCodonCount(1,5);
+            printCodonCount(1,99);
             getMostCommonCodon();
         }
     }
