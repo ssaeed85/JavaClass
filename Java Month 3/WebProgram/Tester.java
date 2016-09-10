@@ -10,7 +10,7 @@ import java.util.*;
 
 public class Tester
 {
-    private String fName = "weblog3-short_log";
+    private String fName = "weblog1_log";
     public void testLogEntry() {
         LogEntry le = new LogEntry("1.2.3.4", new Date(), "example request", 200, 500);
         System.out.println(le);
@@ -80,5 +80,16 @@ public class Tester
         LogAnalyzer la = new LogAnalyzer();
         la.readFile(fName);
         la.iPsForDays();
+    }
+    public void testdayWithMostIPVisits(){
+        LogAnalyzer la = new LogAnalyzer();
+        la.readFile(fName);
+        la.dayWithMostIPVisits();
+    }
+    public void testiPsWithMostVisitsOnDay(){
+        LogAnalyzer la = new LogAnalyzer();
+        la.readFile(fName);
+        la.iPsForDays();
+        la.iPsWithMostVisitsOnDay("Mar 17");
     }
 }

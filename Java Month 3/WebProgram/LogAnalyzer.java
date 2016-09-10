@@ -30,11 +30,12 @@ public class LogAnalyzer
         uniqueIpListForDay = new ArrayList<String>();
         filteredIPList = new ArrayList<String>();
         IPAddr = "";        
-    }public void printStringArrayList(ArrayList<String> list){
+    }
+    public void printStringArrayList(ArrayList<String> list){
         int count =0;
         for(String listItem : list){
             count++;
-            System.out.println(count+".\t\t"+listItem);
+            System.out.println(count+".\t"+listItem);
         }        
     }
     public void readFile(String filename) {
@@ -146,24 +147,25 @@ public class LogAnalyzer
     public HashMap<String,ArrayList<String>> iPsForDays(){
         //Returns a HashMap. key: Date, Value: List of IPAdress visits for that Date. 
         //IP addresses should be recorded for every occurence of it even if multiple occurences exist.
+        //HashMap<String,ArrayList<String>> testMap = new HashMap<String,ArrayList<String>>();
         iPsByDayMap.clear();
         Date TimeStamp=null;
-        String Date = ""; //Date String got from default toString() method for above TimeStamp
-        
+        String DateString = ""; //Date String got from default toString() method for above TimeStamp
+                
         for(LogEntry le : records){
            IPAddr = le.getIpAddress();
            TimeStamp = le.getAccessTime();
-           Date = TimeStamp.toString().substring(4,10);
-           IPAddressList.clear();
+           DateString = TimeStamp.toString().substring(4,10);
+           //System.out.println(DateString);
            
-           if(iPsByDayMap.containsKey(Date)){
+           if(iPsByDayMap.containsKey(DateString)){
                //If HashMap contains Date: retrieve current IP list stored for that Date
-               iPsByDayMap.get(Date).add(IPAddr);
+               iPsByDayMap.get(DateString).add(IPAddr);               
            }
            else{
-               
-               IPAddressList.add(IPAddr);
-               iPsByDayMap.put(Date,IPAddressList);  
+               ArrayList<String> list = new ArrayList<String>();
+               list.add(IPAddr);
+               iPsByDayMap.put(DateString,list);  
             }
         }    
         
@@ -204,7 +206,7 @@ public class LogAnalyzer
         
         for(String IPAddress: filteredIPList){
             if(tempMap.containsKey(IPAddress))
-                tempMap.put(IPAddress,IPCountMap.get(IPAddress)+1);
+                tempMap.put(IPAddress,(tempMap.get(IPAddress))+1);
             else
                 tempMap.put(IPAddress,1);
                 
