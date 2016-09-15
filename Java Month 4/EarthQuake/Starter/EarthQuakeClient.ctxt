@@ -1,0 +1,14 @@
+#BlueJ class context
+comment0.params=
+comment0.target=EarthQuakeClient()
+comment1.params=
+comment1.target=void\ bigQuakes()
+comment2.params=
+comment2.target=void\ closeToMe()
+comment3.params=
+comment3.target=void\ createCSV()
+comment4.params=
+comment4.target=void\ quakesOfDepth()
+comment5.params=phrase\ phraseLoc
+comment5.target=void\ quakesByPhrase(java.lang.String,\ java.lang.String)
+numComments=6
