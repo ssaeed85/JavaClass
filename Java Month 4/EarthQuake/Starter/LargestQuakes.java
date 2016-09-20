@@ -21,8 +21,10 @@ public class LargestQuakes {
     private void printQEList(ArrayList<QuakeEntry> quakeData){
         //All this method does is print out the quake data list leveraging the toString() method 
         //for a quake entry
+        int count=0;
         for(QuakeEntry qe: quakeData){
-            System.out.println(qe);
+            count++;
+            System.out.println(count +".\t"+qe);
         }
     }
     public ArrayList<QuakeEntry> getLargest (ArrayList<QuakeEntry> quakeData, int howMany)
@@ -47,7 +49,7 @@ public class LargestQuakes {
         //printQEList(list);
         System.out.println(list.size() + " quakes read");
         
-        ArrayList<QuakeEntry> filtered = getLargest(list,5);
+        ArrayList<QuakeEntry> filtered = getLargest(list,50);
         printQEList(filtered);
     }
 }

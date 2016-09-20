@@ -132,7 +132,7 @@ public class EarthQuakeClient {
         String source = "data/nov20quakedata.atom";
         ArrayList<QuakeEntry> list = parser.read(source);
         
-        ArrayList<QuakeEntry> answer = filterByDepth(list, -10000,-8000);
+        ArrayList<QuakeEntry> answer = filterByDepth(list, -4000,-2000);
         printQEList(answer);
         System.out.println("Found " + answer.size() + " quakes that match the criteria");
     }
