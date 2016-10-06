@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.params=
+comment0.target=Tester()
+comment1.params=key
+comment1.target=void\ testGetFollows(java.lang.String)
+comment2.params=key
+comment2.target=void\ testGetFollowsWithFile(java.lang.String)
+comment3.params=list\ key
+comment3.target=void\ printFollowResult(java.util.ArrayList,\ java.lang.String)
+numComments=4
