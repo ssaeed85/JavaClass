@@ -16,7 +16,9 @@ public class WordGram {
     }
 
     public int length(){
-        // TODO: Complete this method
+        //Returns the length of myWords
+        int length=0;
+        length = myWords.size();
         return 0;
     }
 
@@ -34,7 +36,7 @@ public class WordGram {
 
     }
 
-    public WordGram shiftAdd(String word) {	
+    public WordGram shiftAdd(String word) { 
         WordGram out = new WordGram(myWords, 0, myWords.length);
         // shift all words one towards 0 and add word at the end. 
         // you lose the first word

@@ -32,8 +32,11 @@ public class MarkovRunner {
         FileResource fr = new FileResource(); 
         String st = fr.asString(); 
         st = st.replace('\n', ' '); 
-        MarkovWordOne markovWord = new MarkovWordOne(); 
-        runModel(markovWord, st, 200); 
+        MarkovWordOne markov1Word = new MarkovWordOne(); 
+        runModel(markov1Word, st, 50,139); 
+        
+        //MarkovWordTwo markov2Word = new MarkovWordTwo();
+        //runModel(markov2Word, st, 50, 832);
     } 
 
     private void printOut(String s){
