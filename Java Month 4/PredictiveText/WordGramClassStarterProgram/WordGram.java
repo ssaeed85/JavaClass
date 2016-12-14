@@ -17,23 +17,18 @@ public class WordGram {
 
     public int length(){
         //Returns the length of myWords
-        int length=0;
-        length = myWords.size();
-        return 0;
+        return myWords.length;
     }
 
     public String toString(){
         String ret = "";
         // TODO: Complete this method
-
         return ret.trim();
     }
 
     public boolean equals(Object o) {
-        WordGram other = (WordGram) o;
         // TODO: Complete this method
         return true;
-
     }
 
     public WordGram shiftAdd(String word) { 
