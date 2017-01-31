@@ -1,0 +1,22 @@
+#BlueJ class context
+comment0.params=fileString
+comment0.target=void\ loadMovies(java.lang.String)
+comment1.params=fileString
+comment1.target=void\ loadRaters(java.lang.String)
+comment2.params=minMinutes
+comment2.target=int\ getMovieCountLongerThan(int)
+comment3.params=genre
+comment3.target=int\ getMovieCountGenre(java.lang.String)
+comment4.params=
+comment4.target=int\ getMovieCountDirector()
+comment5.params=
+comment5.target=void\ printRatersInfo()
+comment6.params=
+comment6.target=void\ testLoadMovies()
+comment7.params=
+comment7.target=void\ testmovieCounts()
+comment8.params=
+comment8.target=void\ testLoadRaters()
+comment9.params=
+comment9.target=void\ testRatersEquality()
+numComments=10
