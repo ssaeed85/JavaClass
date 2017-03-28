@@ -12,7 +12,8 @@ import org.apache.commons.csv.*;
 
 public class FirstRatings {
     private ArrayList<Movie> moviesInfo = new ArrayList<Movie>();
-    private HashMap<String,Rater> ratersInfo = new HashMap<String,Rater>();
+    //private HashMap<String,Rater> ratersInfo = new HashMap<String,Rater>();
+    private ArrayList<Rater> ratersInfo = new ArrayList<Rater>();
     public void loadMovies(String fileString){
         FileResource fr = new FileResource(fileString);
         int recordCount = 0;
@@ -20,7 +21,7 @@ public class FirstRatings {
             recordCount++;
             String id = rec.get("id");
             String title = rec.get("title");
-            String year = rec.get("year");
+            int year = Integer.parseInt(rec.get("year"));
             String country = rec.get("country");
             String genre = rec.get("genre");
             String director = rec.get("director");
@@ -41,23 +42,34 @@ public class FirstRatings {
             Rater cRater = new Rater(rec.get("rater_id"));
             String mID = rec.get("movie_id");
             double rating = Double.parseDouble(rec.get("rating")); 
-            //double time = Double.parseDouble(rec.get("time"));      
-            if (!ratersInfo.containsKey(cRater.getID())){
-                cRater.addRating(mID,rating);
-                ratersInfo.put(cRater.getID(),cRater);
-            }
-            else{                
-                for(Rater r: ratersInfo){
-                    if(cRater.equals(r)){
-                        r.addRating(mID,rating);
-                        break;
-                    }
+            //double time = Double.parseDouble(rec.get("time"));     
+            boolean bSkip = false;
+           
+            for(Rater r: ratersInfo){
+                String rID = r.getID();
+                if (rID.equals(cRater.getID())){
+                    r.addRating(mID,rating);
+                    bSkip = true;
+                    break;                    
                 }
-            }            
-            System.out.println(cRater.getID() +": " + mID);
+            }
+            if (bSkip==false){
+                cRater.addRating(mID,rating);
+                ratersInfo.add(cRater);                
+            }
+            //System.out.println(cRater.getID() +": " + mID + ", " + rating);
         }
         System.out.println("Number of records in file: " + recordCount);
         System.out.println("Number of raters in file: " + ratersInfo.size());
+    }
+    public int getRatingCount(String rID){
+        for(Rater r : ratersInfo){
+            if(rID.equals(r.getID())){
+                return r.numRatings();
+            }            
+        }
+        System.out.println("List doesn't contain rater");
+        return -1;
     }
     public int getMovieCountLongerThan(int minMinutes){
         int count =0;
@@ -112,16 +124,59 @@ public class FirstRatings {
         return max;
     }
     public void printRatersInfo(){
-        for(String rID: ratersInfo.keySet()){
-            System.out.println(ratersInfo.get(rID).getID());
-            ArrayList<String> ratings = ratersInfo.get(rID).getItemsRated();
-            
-            System.out.println(ratings.toString());            
+        //Prints all loaded raters info
+        for(Rater r: ratersInfo){
+                r.toString();
         }
     }
+    public int maxRatings(){
+        //Return max number of ratings by any rater
+        int max = 0;
+        for(Rater r: ratersInfo){
+            if(r.numRatings()>max)
+                max = r.numRatings();
+        }
+        System.out.println("Max number of ratings by any rater: " + max);
+        return max;
+    }
+    public void ratersWithRating(int num){
+        //Prints out all raters (ID) that have the same number of ratings as argument
+        int i = 0;
+        for(Rater r: ratersInfo){
+            //System.out.println(r.getID()+ ": " +r.numRatings());
+            if(r.numRatings()==num){
+                i++;
+                //System.out.println(r.toString());
+            }
+        }
+        System.out.println("Number of raters with " + num +" rating(s) : " + i );         
+    }
+    public int numRatingsMovie(String mID){
+        //Returns number of ratings a particular movie has received across all raters
+        int i = 0;
+        for(Rater r: ratersInfo){
+            if(r.hasRating(mID)){
+                i++;
+            }
+        }
+        return i;
+    }
+    public ArrayList<String> numRatedMovies(){
+        //Returns the total number of UNIQUE movies rated by all raters combined
+        ArrayList<String> mList = new ArrayList<String>();
+        for(Rater r: ratersInfo){
+            ArrayList<String> l = r.getItemsRated();
+            for(String s : l){
+                if(!mList.contains(s))
+                    mList.add(s);
+            }
+        }
+        System.out.println(mList.size());
+        return mList;
+    }
     public void testLoadMovies(){
-        //String filePath = "data/ratedmoviesfull.csv";
-        String filePath = "data/ratedmovies_short.csv";
+        String filePath = "data/ratedmoviesfull.csv";
+        //String filePath = "data/ratedmovies_short.csv";
         loadMovies(filePath);
     }
     public void testmovieCounts(){
@@ -130,33 +185,9 @@ public class FirstRatings {
         System.out.println("With a movie count of " + getMovieCountDirector() + " each");
     }
     public void testLoadRaters(){
-        String filePath = "data/ratings_short.csv";
+        String filePath = "data/ratings.csv";
+        //String filePath = "data/ratings_short.csv";
         loadRaters(filePath);
         printRatersInfo();
-    }
-    public void testRatersEquality(){
-        FileResource fr = new FileResource("data/ratings_short.csv");
-        for(CSVRecord rec : fr.getCSVParser()){
-            Rater cRater = new Rater(rec.get("rater_id"));
-            String mID = rec.get("movie_id");
-            double rating = Double.parseDouble(rec.get("rating")); 
-            //double time = Double.parseDouble(rec.get("time"));  
-            cRater.addRating(mID,rating);
-            ratersInfo.add(cRater);         
-            System.out.println(cRater.getID() +": " + mID);
-        }
-        System.out.println("Number of raters in file: " + ratersInfo.size());
-        Rater c1 = ratersInfo.get(0);
-        Rater c2 = ratersInfo.get(1);
-        Rater c3 = ratersInfo.get(2);
-        System.out.println("First Rater: " + c1.toString());
-        System.out.println("Second Rater: " + c2.toString());
-        System.out.println("Third Rater: " + c3.toString());
-        System.out.println("Are first and second raters the same?\n" + c1.equals(c2));
-        System.out.println("Are first and third raters the same?\n" + c1.equals(c3));
-        
-        System.out.println("c1 and c2 are the same rater. \n Does the list recognize this? Does the list contain a rater with id '1'?");
-        Rater newRater = new Rater("1");
-        System.out.println(ratersInfo.contains(newRater));
     }
 }

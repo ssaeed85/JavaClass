@@ -54,4 +54,13 @@ public class Rater {
         }
         return list;
     }
+    public String toString(){
+        String s = "Rater: " + myID;
+        int i=0;
+        for(Rating r: myRatings){
+            i++;
+            s = s+ "\n" + r.toString();
+        }
+        return s;
+    }
 }

@@ -2,7 +2,7 @@
 comment0.params=anID\ aTitle\ aYear\ theGenres
 comment0.target=Movie(java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String)
 comment1.params=anID\ aTitle\ aYear\ theGenres\ aDirector\ aCountry\ aPoster\ theMinutes
-comment1.target=Movie(java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String,\ int)
+comment1.target=Movie(java.lang.String,\ java.lang.String,\ int,\ java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String,\ int)
 comment10.params=
 comment10.target=java.lang.String\ toString()
 comment2.params=

@@ -15,4 +15,6 @@ comment6.params=r
 comment6.target=boolean\ equals(Rater)
 comment7.params=
 comment7.target=java.util.ArrayList\ getItemsRated()
-numComments=8
+comment8.params=
+comment8.target=java.lang.String\ toString()
+numComments=9

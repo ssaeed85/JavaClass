@@ -20,12 +20,12 @@ public class Movie {
         genres = theGenres;
     }
 
-    public Movie (String anID, String aTitle, String aYear, String theGenres, String aDirector,
+    public Movie (String anID, String aTitle, int aYear, String theGenres, String aDirector,
     String aCountry, String aPoster, int theMinutes) {
         // just in case data file contains extra whitespace
         id = anID.trim();
         title = aTitle.trim();
-        year = Integer.parseInt(aYear.trim());
+        year = aYear;
         genres = theGenres;
         director = aDirector;
         country = aCountry;
