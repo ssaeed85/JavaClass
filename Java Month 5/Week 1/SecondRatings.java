@@ -19,38 +19,9 @@ public class SecondRatings {
         this("ratedmoviesfull.csv", "ratings.csv");
     }
     public SecondRatings(String moviefile, String ratingsfile){
-        FileResource movief = new FileResource(moviefile);
-        FileResource ratingsf = new FileResource(ratingsfile);
-        for(CSVRecord rec : movief.getCSVParser()){
-            String id = rec.get("id");
-            String title = rec.get("title");
-            int year = Integer.parseInt(rec.get("year"));
-            String country = rec.get("country");
-            String genre = rec.get("genre");
-            String director = rec.get("director");
-            int minutes = Integer.parseInt(rec.get("minutes"));
-            String poster = rec.get("poster");
-            Movie currentMovie = new Movie(id,title,year,genre,director,country,poster,minutes);
-            myMovies.add(currentMovie);
-        }   
-        for(CSVRecord rec : ratingsf.getCSVParser()){
-            Rater cRater = new Rater(rec.get("rater_id"));
-            String mID = rec.get("movie_id");
-            double rating = Double.parseDouble(rec.get("rating"));    
-            boolean bSkip = false;
-            for(Rater r: myRaters){
-                String rID = r.getID();
-                if (rID.equals(cRater.getID())){
-                    r.addRating(mID,rating);
-                    bSkip = true;
-                    break;                    
-                }
-            }
-            if (bSkip==false){
-                cRater.addRating(mID,rating);
-                myRaters.add(cRater);                
-            }
-        }
+        FirstRatings fr = new FirstRatings(moviefile,ratingsfile);
+        myMovies = fr.moviesInfo;
+        myRaters = fr.ratersInfo;
     }
     public int getMovieSize(){
         return myMovies.size();
@@ -72,8 +43,8 @@ public class SecondRatings {
         if (numRaters>=minRaters)
             avg = sum / numRaters;
         else{
-            System.out.println(mID + " not rated by enough raters: " + numRaters);
-            avg = 0.0;
+            //System.out.println(mID + " not rated by enough raters: " + numRaters);
+            avg = -1.0;
         }
         return avg;
     }
@@ -82,11 +53,12 @@ public class SecondRatings {
         ArrayList<Rating> rList = new ArrayList<Rating>();
         for(Movie m: myMovies){
             double rating = getAverageByID(m.getID(),minRaters);            
-            if (rating>0.0){
+            if (rating!=-1.0){
                 Rating r = new Rating(m.getID(),rating);
                 rList.add(r);
             }
         }
+        System.out.println("Number of movies with " + minRaters + " ratings: " + rList.size());
         return rList;
     }
     public String getTitle(String id){
@@ -96,5 +68,11 @@ public class SecondRatings {
         }
         return("Title not found");
     }
-    
+    public String getID(String title){
+        for(Movie m: myMovies){
+            if(m.getTitle().equals(title))
+                return (m.getID());
+        }
+        return("No such title");
+    }
 }

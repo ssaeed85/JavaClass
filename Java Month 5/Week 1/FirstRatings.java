@@ -11,9 +11,16 @@ import java.util.*;
 import org.apache.commons.csv.*;
 
 public class FirstRatings {
-    private ArrayList<Movie> moviesInfo = new ArrayList<Movie>();
-    //private HashMap<String,Rater> ratersInfo = new HashMap<String,Rater>();
-    private ArrayList<Rater> ratersInfo = new ArrayList<Rater>();
+    public ArrayList<Movie> moviesInfo = new ArrayList<Movie>();
+    public ArrayList<Rater> ratersInfo = new ArrayList<Rater>();
+    public FirstRatings(){
+        loadMovies("data/ratedmovies_short.csv");
+        loadRaters("data/ratings_short.csv");
+    }
+    public FirstRatings(String mFile, String rFile){
+        loadMovies("data/" + mFile);
+        loadRaters("data/" + rFile);
+    }
     public void loadMovies(String fileString){
         FileResource fr = new FileResource(fileString);
         int recordCount = 0;

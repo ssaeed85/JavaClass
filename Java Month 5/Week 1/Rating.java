@@ -22,7 +22,7 @@ public class Rating implements Comparable<Rating> {
     public String toString () {
         return "[" + getItem() + ", " + getValue() + "]";
     }
-
+    
     public int compareTo(Rating other) {
         if (value < other.value) return -1;
         if (value > other.value) return 1;
