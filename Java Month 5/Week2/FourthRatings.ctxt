@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.params=
+comment0.target=FourthRatings()
+comment1.params=
+comment1.target=int\ getRaterSize()
+comment2.params=mID\ minRaters
+comment2.target=double\ getAverageByID(java.lang.String,\ int)
+comment3.params=list
+comment3.target=void\ printStringList(java.util.ArrayList)
+comment4.params=rID1\ rID2
+comment4.target=void\ testDotProduct(java.lang.String,\ java.lang.String)
+numComments=5

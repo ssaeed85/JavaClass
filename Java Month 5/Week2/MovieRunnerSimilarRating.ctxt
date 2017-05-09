@@ -1,0 +1,24 @@
+#BlueJ class context
+comment0.params=movieFile\ ratingFile
+comment0.target=MovieRunnerSimilarRating(java.lang.String,\ java.lang.String)
+comment1.params=
+comment1.target=MovieRunnerSimilarRating()
+comment10.params=id\ numSimilarRaters\ minimalRaters
+comment10.target=void\ testGetSimilarRating(java.lang.String,\ int,\ int)
+comment2.params=minRating
+comment2.target=void\ printAverageRatings(int)
+comment3.params=minRating\ year\ genre
+comment3.target=void\ printAverageRatingsByYearAfterAndGenre(int,\ int,\ java.lang.String)
+comment4.params=rID\ numSimilarRaters\ minRaters
+comment4.target=void\ printSimilarRatings(java.lang.String,\ int,\ int)
+comment5.params=rID\ numSimilarRaters\ minRaters\ genre
+comment5.target=void\ printSimilarRatingsByGenre(java.lang.String,\ int,\ int,\ java.lang.String)
+comment6.params=rID\ numSimilarRaters\ minRaters\ dir
+comment6.target=void\ printSimilarRatingsByDirector(java.lang.String,\ int,\ int,\ java.lang.String)
+comment7.params=rID\ numSimilarRaters\ minRaters\ genre\ minMin\ maxMin
+comment7.target=void\ printSimilarRatingsByGenreAndMinutes(java.lang.String,\ int,\ int,\ java.lang.String,\ int,\ int)
+comment8.params=rID\ numSimilarRaters\ minRaters\ year\ minMin\ maxMin
+comment8.target=void\ printSimilarRatingsByYearAfterAndMinutes(java.lang.String,\ int,\ int,\ int,\ int,\ int)
+comment9.params=rID
+comment9.target=void\ testSimilarityRatings(java.lang.String)
+numComments=11

@@ -24,6 +24,7 @@ public class RaterDatabase {
  		if (ourRaters == null) {
  			ourRaters= new HashMap<String,Rater>();
  			addRatings("data/" + filename);
+ 			System.out.println("Rating File: " + "data/" + filename);
  		}
  	}	
  	

@@ -1,0 +1,26 @@
+#BlueJ class context
+comment0.params=
+comment0.target=MovieRunnerWithFilters()
+comment1.params=movieFile\ ratingFile
+comment1.target=MovieRunnerWithFilters(java.lang.String,\ java.lang.String)
+comment10.params=minRating\ dir\ min\ max
+comment10.target=void\ printAverageRatingsByDirectorsAndMinutes(int,\ java.lang.String,\ int,\ int)
+comment11.params=minRating\ year\ genre
+comment11.target=void\ printAverageRatingsByYearAfterAndGenre(int,\ int,\ java.lang.String)
+comment2.params=minRating
+comment2.target=void\ printAverageRatings(int)
+comment3.params=rList
+comment3.target=void\ printRatingList(java.util.ArrayList)
+comment4.params=title
+comment4.target=double\ getAverageRatingOneMovie(java.lang.String)
+comment5.params=minRating\ filterCriteria
+comment5.target=java.util.ArrayList\ getAverageRatingByFilter(int,\ Filter)
+comment6.params=minRating\ year
+comment6.target=void\ printAverageRatingByYear(int,\ int)
+comment7.params=minRating\ genre
+comment7.target=void\ printAverageRatingsByGenre(int,\ java.lang.String)
+comment8.params=minRating\ min\ max
+comment8.target=void\ printAverageRatingsByMinutes(int,\ int,\ int)
+comment9.params=minRating\ dir
+comment9.target=void\ printAverageRatingsByDirectors(int,\ java.lang.String)
+numComments=12
